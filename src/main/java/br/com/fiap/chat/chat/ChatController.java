@@ -1,10 +1,11 @@
 package br.com.fiap.chat.chat;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -17,6 +18,13 @@ public class ChatController {
         this.chatMessageSender = chatMessageSender;
         this.chatMessageReceiver = chatMessageReceiver;
     }
+    
+    @GetMapping
+    public String index(Model model) {
+        List<String> messages = chatMessageReceiver.getMessages();
+        model.addAttribute("messages", messages);
+        return "chat";
+    }
 
     @PostMapping("/send")
     public String sendMessage(String username, String message,String gender, RedirectAttributes redirect) {
@@ -25,5 +33,5 @@ public class ChatController {
         redirect.addFlashAttribute("username", username);
         redirect.addFlashAttribute("gender", gender);
         return "redirect:/chat";
-    }
+    }  
 }
