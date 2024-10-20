@@ -32,6 +32,6 @@ public class ChatController {
         chatMessageSender.sendMessage(formattedMessage);
         redirect.addFlashAttribute("username", username);
         redirect.addFlashAttribute("gender", gender);
-        return "redirect:/chat";
+        return "redirect:/";
     }  
 }

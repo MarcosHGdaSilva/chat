@@ -10,10 +10,10 @@ public class ChatMessageSender {
     private final SimpMessagingTemplate messagingTemplate;
     private final RabbitTemplate rabbitTemplate;
 
-
     public ChatMessageSender(RabbitTemplate rabbitTemplate, SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
-        this.rabbitTemplate = new RabbitTemplate();
+        this.rabbitTemplate = rabbitTemplate;
+        
     }
     
 
